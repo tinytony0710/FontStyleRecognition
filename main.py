@@ -16,7 +16,7 @@ def main():
     torch.cuda.manual_seed(seed)        # current gpu
     torch.cuda.manual_seed_all(seed)    # all gpu
 
-    fontImageGenerator('datasets/fonts/', 'datasets/fontImages/')
+    fontStyleNum = fontImageGenerator('datasets/fonts/', 'datasets/fontImages/')
 
     X_partial, Y_partial = loadDataset('datasets/fontImages/'+'partial/')
     X_thousand, Y_thousand = loadDataset('datasets/fontImages/'+'thousand/')
@@ -24,8 +24,8 @@ def main():
     partial_dataset = ImageDataset(X_partial, Y_partial, device)
     thousand_dataset = ImageDataset(X_thousand, Y_thousand, device)
 
-    m1 = Model(device)
-    m2 = Model(device)
+    m1 = Model(fontStyleNum, device)
+    m2 = Model(fontStyleNum, device)
     
     m1.train(partial_dataset, batch_size=16)
     m2.train(thousand_dataset, batch_size=16)

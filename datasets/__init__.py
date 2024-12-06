@@ -116,6 +116,9 @@ def fontImageGenerator(sourcePath, targetPath):
         for j, charImage in enumerate(fontImages):
             Image.fromarray(charImage).save(f"{font}/{partial[j]}.jpg")
             print(f"{font}/{partial[j]}.jpg")
+        
+    
+    return len(fonts)
 
 
 

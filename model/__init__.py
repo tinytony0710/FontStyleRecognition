@@ -6,9 +6,9 @@ import torch.optim as optim
 from .module import SwordNet
 
 class Model:
-    def __init__(self, device):
+    def __init__(self, prediction_class, device):
         print('__init__')
-        self.model = SwordNet(3, device=device)
+        self.model = SwordNet(prediction_class, device=device)
         self.optimizer = optim.SGD(self.model.parameters(), lr=0.001, momentum=0.9)
         self.criterion = nn.CrossEntropyLoss()
         self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=10, gamma=0.1)
