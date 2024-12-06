@@ -118,12 +118,6 @@ def fontImageGenerator(sourcePath, targetPath):
             print(f"{font}/{partial[j]}.jpg")
         
     
-    return len(fonts)
-
-
-
-
-    
     # transform into image(test)
     images=[[extract_font(font,char)>threshold for char in thousand]for font in fonts]
 
@@ -140,5 +134,4 @@ def fontImageGenerator(sourcePath, targetPath):
         
 
         
-    
-    return
+    return len(fonts)
