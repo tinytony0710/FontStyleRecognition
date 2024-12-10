@@ -58,13 +58,13 @@ class SwordNet(nn.Module):
             ResBlock(512, 3, device=device, dtype=dtype),       # (n,512,12,12)
             nn.MaxPool2d(kernel_size=2, stride=2),              # (n,512,6,6)
             ConvBlock(512, 1024, device=device, dtype=dtype),   # (n,1024,6,6)
-            # nn.AdaptiveAvgPool2d((1, 1)),                       # (n,1024,1,1)
+            nn.AdaptiveMaxPool2d((1, 1)),                       # (n,1024,1,1)
             nn.Flatten(),                                       # (n,1024)
             nn.Dropout(p=0.5),                                  # (n,1024)
-            # nn.Linear(1024, 729, bias=True, device=device, dtype=dtype),
+            nn.Linear(1024, 9, bias=True, device=device, dtype=dtype),
             # nn.Linear(729, 81, bias=True, device=device, dtype=dtype),
-            nn.Linear(36864, 81, bias=True, device=device, dtype=dtype),
-            nn.Linear(81, 9, bias=True, device=device, dtype=dtype),
+            # nn.Linear(36864, 81, bias=True, device=device, dtype=dtype),
+            # nn.Linear(81, 9, bias=True, device=device, dtype=dtype),
             nn.Linear(9, prediction_class, bias=True, device=device, dtype=dtype),
             nn.Softmax(dim=-1),
         ])
